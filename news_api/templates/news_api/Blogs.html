@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News and Articles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f4f4f4; 
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .news-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
+            gap: 20px;
+        }
+
+        .news-card {
+            width: 300px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(12, 9, 9, 0.1);
+            border-radius: 25px; 
+            transition: transform 0.3s ease-in-out; 
+        }
+
+        .news-card:hover {
+            transform: scale(1.05); 
+        }
+
+        .news-card img {
+            max-width: 300px;
+            height: 200px;
+            margin-bottom: 10px;
+            border-radius: 5px; 
+        }
+
+        .news-card h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .news-card p {
+            margin-bottom: 10px;
+        }
+
+        .news-card a {
+            display: block;
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .news-list {
+                grid-template-columns: 1fr; 
+            }
+        }
+
+        #load-more-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>News and Articles</h1>
+
+    <ul class="news-list">
+        {% for article in articles %}
+            <ul class="news-card">
+                <img src="{{ article.urlToImage }}" alt="{{ article.title }}">
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.description }}</p>
+                <a href="{{ article.url }}" target="_blank">Read more</a>
+            </ul>
+        {% endfor %}
+    </ul>
+<!-- 
+    {% if next_page %}
+        <a id="load-more-btn" href="?page={{ next_page }}">Load More...</a>
+    {% endif %} -->
+</body>
+</html>
