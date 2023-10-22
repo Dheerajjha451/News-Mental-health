@@ -8,7 +8,7 @@ def home(request):
     page = request.GET.get('page', 1)
     start_index = (page - 1) * page_size
 
-    api_url = f'https://newsapi.org/v2/everything?q=mental%20health&apiKey={API_KEY}&pageSize={page_size}&page={page}'
+    api_url = f'https://newsapi.org/v2/everything?q="mental%20health"&apiKey={API_KEY}&pageSize={page_size}&page={page}'
     response = requests.get(api_url)
     data = response.json()
     
